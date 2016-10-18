@@ -66,6 +66,11 @@ module.exports = [
                 hash: true,
                 inject: 'body',
                 template: 'index.html'
+            }),
+            new HtmlWebpackPlugin({
+                inject: false,
+                filename: "404.html",
+                template: '404.html'
             })
         ]
     }
