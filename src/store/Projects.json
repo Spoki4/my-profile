@@ -17,7 +17,7 @@
         }
       ],
       "description": "Разработка и верстка дизайна для заказа(от такого дизайна в последствие отказались)",
-      "technologies": "Python, HTML, CSS(LESS), Django, Javascript(JQuery)",
+      "technologies": "Python, HTML, CSS(LESS), Django, JavaScript(jQuery)",
       "url": "/projects/furniture-store"
     },
     {
@@ -41,7 +41,7 @@
         }
       ],
       "description": "Создание профиля, как практики в университете",
-      "technologies": "Webpack, Babel, React.js, Flux, React-Router Javascript, EcmaScript 6, Node.js, Bootstrap",
+      "technologies": "Webpack, Babel, React.js, React-Router JavaScript, ES 6, Node.js, Bootstrap",
       "url": "/projects/profile"
     }
   ]

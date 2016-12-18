@@ -3,10 +3,9 @@ var HtmlWebpackPlugin = require('html-webpack-plugin');
 var CopyWebpackPlugin = require('copy-webpack-plugin');
 var path = require("path");
 
-
 module.exports = [
     {
-        devtool: 'eval',
+        devtool: 'cheap-module-source-map',
         context: path.join(__dirname, './src'),
         entry: {
             jsx: './index.js',
@@ -71,7 +70,18 @@ module.exports = [
                 inject: false,
                 filename: "404.html",
                 template: '404.html'
-            })
+            }),
+            new webpack.DefinePlugin({
+                'process.env': JSON.stringify('production')
+            }),
+            new webpack.optimize.DedupePlugin(),
+            new webpack.optimize.UglifyJsPlugin({
+                exclude: /node_modules/,
+                compress: {
+                    warnings: true
+                }
+            }),
+            new webpack.optimize.AggressiveMergingPlugin()
         ]
     }
 ];

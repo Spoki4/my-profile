@@ -1,6 +1,6 @@
 import React from "react";
 
-import {Navbar, NavItem, Nav, NavDropdown, MenuItem, Image} from 'react-bootstrap';
+import {Navbar, NavItem, Nav, NavDropdown, MenuItem, Image, Modal, Button, Form, FormGroup, FormControl, ControlLabel, Col} from 'react-bootstrap';
 import {LinkContainer} from 'react-router-bootstrap';
 
 import Blog from '../../components/Blog';
@@ -13,6 +13,22 @@ import style from './style.css';
 import Projects from "../../store/Projects.json";
 
 export default class Application extends React.Component {
+    constructor() {
+        super();
+
+        this.state = {
+            modalShow: false
+        };
+    }
+
+    modalOpen() {
+        this.setState({modalShow: true});
+    }
+
+    modalClose() {
+        this.setState({modalShow: false});
+    }
+
     render() {
         return (<div>
             <Navbar>
@@ -40,6 +56,7 @@ export default class Application extends React.Component {
                         </NavDropdown>
                     </Nav>
                     <Nav pullRight>
+                        <NavItem eventKey={1} onClick={this.modalOpen.bind(this)}>Написать мне</NavItem>
                         <Navbar.Link href="http://vk.com/spoki4">
                             <Image src={vkIcon} className={style.icon}/>
                         </Navbar.Link>
@@ -50,6 +67,32 @@ export default class Application extends React.Component {
                 </Navbar.Collapse>
             </Navbar>
             {this.props.children || <Blog />}
+            <Modal show={this.state.modalShow} onHide={this.modalClose.bind(this)}>
+                <Modal.Header closeButton>Обратная связь</Modal.Header>
+                <Modal.Body>
+                    <Form horizontal>
+                        <FormGroup>
+                            <Col componentClass={ControlLabel} sm={2}>
+                                Имя
+                            </Col>
+                            <Col sm={10}>
+                                <FormControl type="text" placeholder="Имя" />
+                            </Col>
+                        </FormGroup>
+                        <FormGroup>
+                            <Col componentClass={ControlLabel} sm={2}>
+                                Сообщение
+                            </Col>
+                            <Col sm={10}>
+                                <FormControl componentClass="textarea" placeholder="Текст" />
+                            </Col>
+                        </FormGroup>
+                    </Form>
+                </Modal.Body>
+                <Modal.Footer>
+                    <Button onClick={this.modalClose.bind(this)} bsStyle="success">Отправить</Button>
+                </Modal.Footer>
+            </Modal>
         </div>);
     }
 }
